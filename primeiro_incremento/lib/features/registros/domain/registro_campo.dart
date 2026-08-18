@@ -66,13 +66,14 @@ class RegistroCampo {
       'titulo': titulo.trim(),
       'descricao': descricao.trim(),
       'categoria_id': categoriaId,
+      'categoria_nome': categoriaNome,
       'data_visita': dataVisita.toUtc().toIso8601String(),
       'situacao':situacao.name,
       'foto_path': fotoPath,
       'latitude': latitude,
       'longitude': longitude,
       'status_sync': statusSincronizacao.name,
-      'criando_em': criadoEm.toUtc().toIso8601String(),
+      'criado_em': criadoEm.toUtc().toIso8601String(),
       'atualizado_em':atualizadoEm.toUtc().toIso8601String(),
     };
   }
@@ -81,9 +82,9 @@ class RegistroCampo {
     return RegistroCampo(
       id: map['id'] as String,
       titulo: map['titulo'] as String,
-      descricao: map['descrição'] as String? ?? '',
+      descricao: map['descricao'] as String? ?? '',
       categoriaId: map['categoria_id'] as int,
-      categoriaNome: map['categoria_nome'] as String,
+      categoriaNome: map['categoria_nome'] as String?,
       dataVisita: DateTime.parse(map['data_visita'] as String
       ).toLocal(),
       situacao: SituacaoRegistro.values.byName(
@@ -96,10 +97,10 @@ class RegistroCampo {
         map['status_sync'] as String,
       ),
       criadoEm: DateTime.parse(
-        map['criando_em'] as String,
+        map['criado_em'] as String,
       ).toLocal(),
       atualizadoEm: DateTime.parse(
-        map['atualizao_em'] as String,
+        map['atualizado_em'] as String,
       ).toLocal(),
       
     );
@@ -109,6 +110,7 @@ class RegistroCampo {
     String? titulo,
     String? descricao,
     int? categoriaId,
+    String? categoriaNome,
     DateTime? dataVisita,
     SituacaoRegistro? situacao,
     StatusSincronizacao? statusSincronizacao,
@@ -119,7 +121,7 @@ class RegistroCampo {
       titulo: titulo ?? this.titulo,
       descricao: descricao ?? this.descricao,
       categoriaId: categoriaId ?? this.categoriaId,
-      categoriaNome: categoriaNome,
+      categoriaNome: categoriaNome ?? this.categoriaNome,
       dataVisita: dataVisita ?? this.dataVisita,
       situacao: situacao ?? this.situacao,
       fotoPath: fotoPath,
