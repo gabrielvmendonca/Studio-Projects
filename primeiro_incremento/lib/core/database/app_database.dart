@@ -2,6 +2,7 @@ import 'package:path/path.dart' as path;
 
 import 'package:sqflite/sqflite.dart';
 
+
 class AppDatabase{
   AppDatabase({
     DatabaseFactory? factory,
@@ -50,15 +51,15 @@ class AppDatabase{
   Future<void> _onCreate(Database db, int version) async{
     final batch = db.batch();
 
-    batch.execute('''
+    batch.execute("""
       CREATE TABLE categorias(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL UNIQUE
       ) 
-      '''
+      """
     );
 
-    batch.execute('''
+    batch.execute("""
       CREATE TABLE registros (
       id TEXT PRIMARY KEY,
       titulo  TEXT NOT NULL,
@@ -73,15 +74,15 @@ class AppDatabase{
       criado_em TEXT NOT NULL,
       atualizado_em TEXT NOT NULL,
       FOREIGN KEY (categoria_id)
-        REFERENCES categoria (id)
+        REFERENCES categorias (id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
       )
-    ''' );
+    """ );
 
     batch.execute(
-      'CREATE INDEX idx_registros_data '
-      'ON registros (data_visita)',
+      """CREATE INDEX idx_registros_data 
+      ON registros (data_visita)""",
     );
 
     batch.execute(

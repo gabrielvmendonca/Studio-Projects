@@ -66,7 +66,6 @@ class RegistroCampo {
       'titulo': titulo.trim(),
       'descricao': descricao.trim(),
       'categoria_id': categoriaId,
-      'categoria_nome': categoriaNome,
       'data_visita': dataVisita.toUtc().toIso8601String(),
       'situacao':situacao.name,
       'foto_path': fotoPath,
@@ -78,7 +77,7 @@ class RegistroCampo {
     };
   }
 
-  factory RegistroCampo.fromMap(Map<String,Object?> map){
+  factory RegistroCampo.fromMap(Map<String, Object?> map){
     return RegistroCampo(
       id: map['id'] as String,
       titulo: map['titulo'] as String,
@@ -110,7 +109,6 @@ class RegistroCampo {
     String? titulo,
     String? descricao,
     int? categoriaId,
-    String? categoriaNome,
     DateTime? dataVisita,
     SituacaoRegistro? situacao,
     StatusSincronizacao? statusSincronizacao,
@@ -121,7 +119,8 @@ class RegistroCampo {
       titulo: titulo ?? this.titulo,
       descricao: descricao ?? this.descricao,
       categoriaId: categoriaId ?? this.categoriaId,
-      categoriaNome: categoriaNome ?? this.categoriaNome,
+      
+      categoriaNome: categoriaNome,
       dataVisita: dataVisita ?? this.dataVisita,
       situacao: situacao ?? this.situacao,
       fotoPath: fotoPath,
