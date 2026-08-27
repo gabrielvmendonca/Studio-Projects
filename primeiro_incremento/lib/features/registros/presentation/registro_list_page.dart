@@ -230,8 +230,28 @@ class _RegistroListPagestate extends State<RegistroListPage>{
 
     );
   }
-  
 
+  String _formatarData(DateTime data) {
+    final dia = data.day.toString().padLeft(2, '0');
 
-     
+    final mes = data.month.toString().padLeft(2,'0');
+
+    return '$dia/$mes/${data.year}';
+   }
+
+   IconData _iconeSituacao(
+      SituacaoRegistro situacao,
+   ) {
+    
+      return switch (situacao) {
+        SituacaoRegistro.pendente => Icons.schedule,
+
+        SituacaoRegistro.emAndamento => Icons.construction,
+
+        SituacaoRegistro.concluido => Icons.check,
+
+      };
+   }
+   
 }
+
