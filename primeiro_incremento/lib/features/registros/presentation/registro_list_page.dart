@@ -96,7 +96,7 @@ class _RegistroListPagestate extends State<RegistroListPage>{
           }
 
           ScaffoldMessenger.of(context).showSnackBar(
-             const snackBar(
+             const SnackBar(
                 content: Text(
                   'Não foi excluir o registro.'
                 ),
@@ -253,5 +253,98 @@ class _RegistroListPagestate extends State<RegistroListPage>{
       };
    }
    
+}
+
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState({
+    required this.onCreate,
+  });
+  final VoidCallback onCreate;
+
+  @override
+  Widget build(BuildContext context) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.assistant_outlined,
+                size: 72
+              ),
+
+              const SizedBox(height: 16),
+              Text(
+                'Nenhum registro cadastrado.',
+                style: Theme.of(context).textTheme.titleLarge,
+                ),
+
+                const SizedBox(height: 8),
+
+                const Text(
+                  'Cadastre a primerio visita técnica.'
+                    'Os dados serão salvos no aparelho.',
+                  textAlign: TextAlign.center,  
+                ),
+
+                const SizedBox(height: 20),
+
+                FilledButton.icon(
+                  onPressed: onCreate,
+                  icon: const Icon (Icons.add),
+                  label: const Text('Criar registro')
+                  ),
+
+            ],
+          ), 
+          ),
+        );
+  }
+
+}
+
+class _ErroState extends StatelessWidget{
+ const _ErroState({
+  required this.onRetry,
+
+ });
+
+ final Future<void> Function() onRetry;
+
+ @override
+ Widget build(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsetsGeometry.all(32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.error_outline,
+            size: 72,
+            color: Theme.of(context).colorScheme.error,
+          ),
+
+          const SizedBox(height: 16),
+
+          const Text(
+            'Não foi possivel carregar os registros.',
+            ),
+
+            const SizedBox(height:16),
+
+            OutlinedButton.icon(
+              onPressed: onRetry,
+              icon: const Icon(Icons.refresh),
+              label: const Text('Tentar novamente'),
+              ),
+        ],
+      ),
+      ),
+  );
+ }
+
 }
 
