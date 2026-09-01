@@ -76,8 +76,14 @@ class _RegistroListPagestate extends State<RegistroListPage>{
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
-                   child: const Text('Excluir'),
+                   child: const Text('Cancelar'),
                 ),
+
+                FilledButton(
+                  onPressed: (){
+                    Navigator.of(context).pop(false);
+                  },
+                   child: const Text('Excluir'))
               ],
             );
            },
@@ -110,7 +116,7 @@ class _RegistroListPagestate extends State<RegistroListPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Campo'),
+        title: const Text('Primeiro Incremento'),
 
         actions: [
           IconButton(
@@ -277,7 +283,7 @@ class _EmptyState extends StatelessWidget {
 
               const SizedBox(height: 16),
               Text(
-                'Nenhum registro cadastrado.',
+                'Nenhum registro cadastrado',
                 style: Theme.of(context).textTheme.titleLarge,
                 ),
 

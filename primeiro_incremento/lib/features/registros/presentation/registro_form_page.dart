@@ -143,14 +143,14 @@ class _RegistroFormPageState extends State<RegistroFormPage> {
         Navigator.of(context).pop(true);
       }
     } catch (error) {
-      if(mounted) return;
+      if(!mounted) return;
       setState(() => _salvando = false);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Não foi possivel salvar o registro.')
-          ),
-        );
+        ),
+      );
     }         
   }
 
