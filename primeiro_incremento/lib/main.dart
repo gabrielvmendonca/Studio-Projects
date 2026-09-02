@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'core/database/database_initializer.dart';
+
 import 'core/database/app_database.dart';
 
 import 'features/registros/data/registro_dao.dart';
@@ -12,8 +14,10 @@ import 'features/registros/presentation/registro_list_page.dart';
 
 
 
-void main() {
+Future<void>main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDatabase();
 
   final database = AppDatabase();
 
