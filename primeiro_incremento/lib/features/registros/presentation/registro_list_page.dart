@@ -81,7 +81,7 @@ class _RegistroListPagestate extends State<RegistroListPage>{
 
                 FilledButton(
                   onPressed: (){
-                    Navigator.of(context).pop(false);
+                    Navigator.of(context).pop(true);
                   },
                    child: const Text('Excluir'))
               ],
